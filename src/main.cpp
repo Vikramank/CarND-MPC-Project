@@ -124,13 +124,18 @@ int main() {
           // fitting
           auto coeffs =polyfit(Ptsx,Ptsy,3); 
           double y_eval=polyeval(coeffs,px);
-          double cte = y_eval-py ;
-          double epsi = psi - atan(coeffs[1]); ;
+          //double cte = y_eval-py ;
+          //double epsi = psi - atan(coeffs[1]); ;
+          double cte = polyeval(coeffs, 0.0); 
+          double epsi = -atan(coeffs[1]);     
 
           Eigen::VectorXd state(6);
-          state << px, py, psi, v, cte, epsi;
+          //state << px, py, psi, v, cte, epsi;
+          state << 0.0, 0.0, 0.0, v, cte, epsi;
           
-          std::vector<double> solution=mpc.Solve(state,coeffs);
+          
+          //std::vector<double> solution=mpc.Solve(state,coeffs);
+          auto solution=mpc.Solve(state,coeffs);
           //grabbing steering and throttle values
           double steer_value=solution[0]/deg2rad(25);
           double throttle_value=solution[1];
