@@ -8,7 +8,7 @@ The motive of the project is to implement Model Predictive Control algorithm to 
 ## Model details
 The model is based on Kinetic model that simplifies the situation. This model doesnot implement external forces like friction, gravity effects, etc. 
 
-* Update equations: <br /> 
+* **Update equations**: <br /> 
         State variables :<br />
         x_[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt <br />
         y_[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt <br />
@@ -20,21 +20,21 @@ The model is based on Kinetic model that simplifies the situation. This model do
         delta: Steering angle<br />
         a : throttle value<br />
 
-* Timestep : <br />
+* **Timestep** : <br />
    The prediction horizon 'T' should be large enough so that that our model predicts the trajectory with a good accuracy. 'T' is a product of 'N' and 'dt'. As a rule of thumb, 'T' should be large enough and 'dt' should be small enough to make accurate calculations for small time step in which car should change the actuator values. I chose a value of 'dt' that is greater than the value of latency. My value for N is 10 and dt is 0.15(150ms)    
 
-* Polynomial Fitting and MPC Preprocessing
+* **Polynomial Fitting and MPC Preprocessing**
 Prediction is made by finding a third degree polynomial and fitting the waypoints. A third degree polynomial is ideal for this problem because it can model both curvy and straight roads. The coordinates sent from MPC::solve is in map coordinates. In order to use the coordinates effectively, I transformed them from global to vehicle coordinates.  
 
-* Latency:
-  In order to mimic real life scenarios, i.e a small delay in control and implementation, I introduced a small delay to handle this issue.
-           Latency equations: 
-           latency = 0.1; 
-           x = x + v*cos(psi)*latency;
-           y = y + v*sin(psi)*latency;
-           psi = psi + v*delta/Lf*latency;
-           v = v + acceleration*latency;
-
+* **Latency**:
+  In order to mimic real life scenarios, i.e a small delay in control and implementation, I introduced a small delay to handle this issue.<br />
+           Latency equations: <br />
+           latency = 0.1; <br />
+           x = x + v*cos(psi)*latency;<br />
+           y = y + v*sin(psi)*latency;<br />
+           psi = psi + v*delta/Lf*latency;<br />
+           v = v + acceleration*latency;<br />
+<br />
 ---
 
 ## Dependencies
