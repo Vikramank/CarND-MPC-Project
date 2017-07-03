@@ -8,19 +8,19 @@ The motive of the project is to implement Model Predictive Control algorithm to 
 ## Model details
 The model is based on Kinetic model that simplifies the situation. This model doesnot implement external forces like friction, gravity effects, etc. 
 
-* Update equations 
-        State variables :
-        x_[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt
-        y_[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt
-        psi_[t] = psi[t-1] + v[t-1] / Lf * delta[t-1] * dt
-        v_[t] = v[t-1] + a[t-1] * dt
-        cte[t] = f(x[t-1]) - y[t-1] + v[t-1] * sin(epsi[t-1]) * dt
-        epsi[t] = psi[t] - psides[t-1] + v[t-1] * delta[t-1] / Lf * dt
-        Actuator values :
-        delta: Steering angle
-        a : throttle value
+* Update equations: <br /> 
+        State variables :<br />
+        x_[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt <br />
+        y_[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt <br />
+        psi_[t] = psi[t-1] + v[t-1] / Lf * delta[t-1] * dt<br />
+        v_[t] = v[t-1] + a[t-1] * dt<br />
+        cte[t] = f(x[t-1]) - y[t-1] + v[t-1] * sin(epsi[t-1]) * dt<br />
+        epsi[t] = psi[t] - psides[t-1] + v[t-1] * delta[t-1] / Lf * dt<br />
+        Actuator values :<br />
+        delta: Steering angle<br />
+        a : throttle value<br />
 
-* Timestep 
+* Timestep : <br />
    The prediction horizon 'T' should be large enough so that that our model predicts the trajectory with a good accuracy. 'T' is a product of 'N' and 'dt'. As a rule of thumb, 'T' should be large enough and 'dt' should be small enough to make accurate calculations for small time step in which car should change the actuator values. I chose a value of 'dt' that is greater than the value of latency. My value for N is 10 and dt is 0.15(150ms)    
 
 * Polynomial Fitting and MPC Preprocessing
