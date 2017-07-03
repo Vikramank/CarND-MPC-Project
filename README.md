@@ -2,10 +2,11 @@
 Self-Driving Car Engineer Nanodegree Program
 ![alt text](https://github.com/Vikramank/CarND-MPC-Project/blob/master/images/screen.jpeg)
 
-##Goal
+## Goal
 The motive of the project is to implement Model Predictive Control algorithm to properly steer and apply desired accelaration to the car. 
 
-## asdsdsd
+## Step 1: asdsd
+
 ---
 
 ## Dependencies
